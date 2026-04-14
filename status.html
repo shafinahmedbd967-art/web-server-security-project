@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>System Status Monitor</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0b0f19;
+    color: #00ff7f;
+}
+
+/* HEADER */
+.header {
+    background: #111827;
+    padding: 20px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    border-bottom: 1px solid #1f2937;
+}
+
+/* STATUS BOX */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.box {
+    background: #111827;
+    padding: 40px;
+    border-radius: 15px;
+    width: 400px;
+    box-shadow: 0 0 20px rgba(0,255,127,0.2);
+    text-align: left;
+}
+
+/* STATUS ROW */
+.item {
+    padding: 10px 0;
+    border-bottom: 1px solid #1f2937;
+    font-size: 16px;
+}
+
+.status-ok {
+    color: #00ff7f;
+    font-weight: bold;
+}
+
+.status-warning {
+    color: #facc15;
+    font-weight: bold;
+}
+
+.status-bad {
+    color: #ef4444;
+    font-weight: bold;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+    opacity: 0.6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+System Status Monitoring Panel
+</div>
+
+<div class="container">
+    <div class="box">
+
+        <div class="item">
+            Apache Web Server: <span class="status-ok">Running</span>
+        </div>
+
+        <div class="item">
+            Firewall (UFW): <span class="status-ok">Active</span>
+        </div>
+
+        <div class="item">
+            HTTPS Security: <span class="status-ok">Enabled</span>
+        </div>
+
+        <div class="item">
+            Virtual Hosting: <span class="status-ok">Configured</span>
+        </div>
+
+        <div class="item">
+            System Health: <span class="status-ok">Stable</span>
+        </div>
+
+    </div>
+</div>
+
+<div class="footer">
+Linux Web Server Deployment & Security Hardening Project
+</div>
+
+</body>
+</html>

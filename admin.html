@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Dashboard</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: white;
+}
+
+/* TOP BAR */
+.header {
+    background: #1e293b;
+    padding: 20px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* MAIN GRID */
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 30px;
+}
+
+/* CARD */
+.card {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    background: #273449;
+}
+
+.card h2 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #00ffd5;
+}
+
+.status {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    padding: 15px;
+    background: #1e293b;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 13px;
+    opacity: 0.7;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    Server Administration Panel
+</div>
+
+<div class="container">
+
+    <div class="card">
+        <h2>Server Status</h2>
+        <div class="status">Running Successfully</div>
+    </div>
+
+    <div class="card">
+        <h2>Security System</h2>
+        <div class="status">Firewall Enabled</div>
+    </div>
+
+    <div class="card">
+        <h2>Web Services</h2>
+        <div class="status">Apache Active</div>
+    </div>
+
+    <div class="card">
+        <h2>Monitoring</h2>
+        <div class="status">Access Logs Active</div>
+    </div>
+
+    <div class="card">
+        <h2>Virtual Hosts</h2>
+        <div class="status">Site 1 & Site 2 Running</div>
+    </div>
+
+    <div class="card">
+        <h2>System Health</h2>
+        <div class="status">Stable</div>
+    </div>
+
+</div>
+
+<div class="footer">
+    OS Project - Linux Web Server Deployment & Security Hardening
+</div>
+
+</body>
+</html>
