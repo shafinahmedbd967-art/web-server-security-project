@@ -7,18 +7,64 @@
 <style>
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0b1220;
-    color: #e5e7eb;
+    font-family: 'Segoe UI', sans-serif;
+
+    background: linear-gradient(-45deg, #050816, #0b1a2f, #12002a, #001018);
+    background-size: 400% 400%;
+    animation: bgMove 12s ease infinite;
+
+    color: #e5f7ff;
+}
+
+@keyframes bgMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(0,255,255,0.04),
+        rgba(255,0,255,0.02) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    pointer-events: none;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    background: rgba(0,255,255,0.12);
+    filter: blur(120px);
+    top: 10%;
+    right: 10%;
+    animation: floatGlow 7s ease-in-out infinite;
+}
+
+@keyframes floatGlow {
+    0% { transform: translate(0,0); }
+    50% { transform: translate(-50px,30px); }
+    100% { transform: translate(0,0); }
 }
 
 .header {
-    background: #111827;
+    background: rgba(10, 15, 30, 0.75);
+    backdrop-filter: blur(15px);
     padding: 18px;
     text-align: center;
     font-size: 20px;
     font-weight: bold;
-    border-bottom: 1px solid #1f2937;
+    color: #00f6ff;
+    text-shadow: 0 0 10px #00f6ff;
+    border-bottom: 1px solid rgba(0,255,255,0.2);
 }
 
 .container {
@@ -27,36 +73,49 @@ body {
     margin: auto;
 }
 
+.section-title {
+    margin: 25px 0 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
 .card {
-    background: #111827;
+    background: rgba(10, 15, 30, 0.65);
+    backdrop-filter: blur(15px);
     padding: 18px;
     margin-bottom: 18px;
-    border-radius: 10px;
-    border: 1px solid #1f2937;
+    border-radius: 12px;
+    border: 1px solid rgba(0,255,255,0.15);
+    box-shadow: 0 0 15px rgba(0,255,255,0.15);
 }
 
 .title {
     font-size: 16px;
     font-weight: bold;
-    color: #60a5fa;
+    color: #00ffd5;
     margin-bottom: 10px;
 }
 
 .code {
-    background: #0f172a;
+    background: #0a0f1c;
     padding: 12px;
     border-radius: 8px;
     color: #fbbf24;
     font-family: monospace;
     margin-bottom: 10px;
+    border: 1px solid rgba(0,255,255,0.1);
+    overflow-x: auto;
+    position: relative;
 }
 
 .output {
-    background: #0a0f1c;
+    background: #071018;
     padding: 12px;
     border-radius: 8px;
     color: #34d399;
     font-family: monospace;
+    border: 1px solid rgba(0,255,255,0.1);
 }
 
 .note {
@@ -65,11 +124,28 @@ body {
     color: #9ca3af;
 }
 
-.section-title {
-    margin: 25px 0 10px;
-    font-size: 18px;
+.section-warning {
+    color: #ffcc00;
+}
+
+/* COPY BUTTON */
+.copy-btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: #00f6ff;
+    color: #000;
+    border: none;
+    padding: 4px 8px;
+    font-size: 11px;
+    border-radius: 5px;
+    cursor: pointer;
     font-weight: bold;
-    color: #ffffff;
+    transition: 0.2s;
+}
+
+.copy-btn:hover {
+    background: #00c2cc;
 }
 </style>
 </head>
@@ -77,135 +153,234 @@ body {
 <body>
 
 <div class="header">
-Real System Check Dashboard (Linux Web Server Project)
+Real System Check Dashboard (Linux Web Server Project - Viva Ready)
 </div>
 
 <div class="container">
 
-    <div class="section-title">1. Apache Server Status Check</div>
+<!-- 1 -->
+<div class="section-title">1. Apache Server Status Check</div>
 
-    <div class="card">
-        <div class="title">Command</div>
-        <div class="code">sudo systemctl status apache2</div>
+<div class="card">
 
-        <div class="title">Expected Output</div>
-        <div class="output">
-Active: active (running)
-Apache2 service is running normally
-        </div>
+<div class="title">Command</div>
+<div class="code">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+sudo systemctl status apache2
+</div>
 
-        <div class="note">Use this to prove server is running.</div>
-    </div>
+<div class="title">Expected Output</div>
+<div class="output">
+● apache2.service - The Apache HTTP Server  
+Active: active (running)  
+Loaded: loaded (/lib/systemd/system/apache2.service)  
+</div>
 
-    <div class="section-title">2. Virtual Host Verification</div>
+<div class="note">✔ Server is running successfully and handling requests.</div>
+</div>
 
-    <div class="card">
-        <div class="title">URLs to open</div>
-        <div class="code">
-http://localhost<br>
-http://site1.local<br>
+
+<!-- 2 -->
+<div class="section-title">2. Virtual Hosting Verification</div>
+
+<div class="card">
+
+<div class="title">Step 1: Check enabled sites</div>
+<div class="code">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+ls /etc/apache2/sites-enabled/
+</div>
+
+<div class="title">Expected Output</div>
+<div class="output">
+site1.conf  
+site2.conf
+</div>
+
+<div class="title">Step 2: Virtual Host mapping</div>
+<div class="code">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+apachectl -S
+</div>
+
+<div class="title">Expected Output</div>
+<div class="output">
+port 80 namevhost site1.local  
+port 80 namevhost site2.local  
+default server localhost
+</div>
+
+<div class="title">Step 3: Browser Test</div>
+<div class="code">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+http://site1.local  
 http://site2.local
-        </div>
+</div>
 
-        <div class="title">Expected Output</div>
-        <div class="output">
-Each URL loads a different webpage using Apache Virtual Hosting
-        </div>
-
-        <div class="note">Shows multiple websites running on same server.</div>
-    </div>
-
-    <div class="section-title">3. HTTPS Security Check</div>
-
-    <div class="card">
-        <div class="title">Command (optional check)</div>
-        <div class="code">
-sudo ss -tlnp | grep 443
-        </div>
-
-        <div class="title">Browser Test</div>
-        <div class="code">https://localhost</div>
-
-        <div class="title">Expected Output</div>
-        <div class="output">
-Port 443 is listening
-Secure connection enabled (SSL active)
-Browser shows certificate warning (self-signed)
-        </div>
-
-        <div class="note">Confirms HTTPS is enabled.</div>
-    </div>
-
-    <div class="section-title">4. Firewall Verification</div>
-
-    <div class="card">
-        <div class="title">Command</div>
-        <div class="code">sudo ufw status</div>
-
-        <div class="title">Expected Output</div>
-        <div class="output">
-Status: active
-80/tcp  ALLOW
-443/tcp ALLOW
-        </div>
-
-        <div class="note">Only required ports are open for security.</div>
-    </div>
-
-    <div class="section-title">5. Live Access Log Monitoring</div>
-
-    <div class="card">
-        <div class="title">Command</div>
-        <div class="code">sudo tail -f /var/log/apache2/access.log</div>
-
-        <div class="title">Action</div>
-        <div class="code">Open http://localhost and refresh browser</div>
-
-        <div class="title">Expected Output</div>
-        <div class="output">
-127.0.0.1 - - "GET / HTTP/1.1" 200
-New log entries appear in real time
-        </div>
-
-        <div class="note">Demonstrates real-time monitoring.</div>
-    </div>
-
-    <div class="section-title">6. Admin Panel Verification</div>
-
-    <div class="card">
-        <div class="title">URL</div>
-        <div class="code">http://localhost/admin.html</div>
-
-        <div class="title">Expected Output</div>
-        <div class="output">
-Admin dashboard loads successfully
-Shows server status, monitoring, and system health
-        </div>
-
-        <div class="note">Basic management interface.</div>
-    </div>
-
-    <div class="section-title">7. Security Hardening Proof</div>
-
-    <div class="card">
-        <div class="title">Configuration Lines</div>
-        <div class="code">
-ServerTokens Prod
-ServerSignature Off
-Options -Indexes
-        </div>
-
-        <div class="title">Expected Output</div>
-        <div class="output">
-Server does not expose version information
-Directory listing disabled
-Improved security posture
-        </div>
-
-        <div class="note">Prevents information leakage.</div>
-    </div>
+<div class="title">Expected Result</div>
+<div class="output">
+Site1 opens different webpage  
+Site2 opens different webpage  
+Same server hosting multiple websites
+</div>
 
 </div>
 
+
+<!-- 3 -->
+<div class="section-title">3. HTTPS Configuration Check</div>
+
+<div class="card">
+
+<div class="title">Enable SSL Module</div>
+<div class="code">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+sudo a2enmod ssl
+</div>
+
+<div class="title">Expected Output</div>
+<div class="output">
+Enabling module ssl  
+To activate run: systemctl restart apache2
+</div>
+
+<div class="title">Check Port 443</div>
+<div class="code">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+sudo ss -tlnp | grep 443
+</div>
+
+<div class="title">Expected Output</div>
+<div class="output">
+LISTEN 0 128 0.0.0.0:443  
+apache2
+</div>
+
+<div class="title">Browser Test</div>
+<div class="code">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+https://localhost
+</div>
+
+<div class="title">Expected Result</div>
+<div class="output">
+⚠ Self-signed certificate warning appears  
+✔ Secure HTTPS connection established
+</div>
+
+</div>
+
+
+<!-- 4 -->
+<div class="section-title">4. Firewall Setup (UFW)</div>
+
+<div class="card">
+
+<div class="title">Command</div>
+<div class="code">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+sudo ufw status verbose
+</div>
+
+<div class="title">Expected Output</div>
+<div class="output">
+Status: active  
+80/tcp   ALLOW  
+443/tcp  ALLOW  
+22/tcp   ALLOW  
+</div>
+
+<div class="title">Proof Command</div>
+<div class="code">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+sudo ufw show added
+</div>
+
+<div class="title">Expected Result</div>
+<div class="output">
+Rules added:
+ALLOW IN 80
+ALLOW IN 443
+ALLOW IN 22
+</div>
+
+</div>
+
+
+<!-- 5 -->
+<div class="section-title">5. Live Access Log Monitoring</div>
+
+<div class="card">
+
+<div class="title">Command</div>
+<div class="code">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+sudo tail -f /var/log/apache2/access.log
+</div>
+
+<div class="title">Action</div>
+<div class="code">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+Open http://localhost and refresh browser
+</div>
+
+<div class="title">Expected Output</div>
+<div class="output">
+127.0.0.1 - - "GET / HTTP/1.1" 200  
+127.0.0.1 - - "GET /index.html" 200  
+Live logs updating in real time
+</div>
+
+<div class="note">✔ Confirms real-time request monitoring system.</div>
+
+</div>
+
+
+<!-- 6 -->
+<div class="section-title section-warning">6. Extra System Proof</div>
+
+<div class="card">
+
+<div class="title">Apache Status</div>
+<div class="code">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+sudo systemctl status apache2
+</div>
+
+<div class="title">Expected Output</div>
+<div class="output">
+Active: active (running)
+</div>
+
+<div class="title">Open Ports Check</div>
+<div class="code">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+ss -tlnp
+</div>
+
+<div class="title">Expected Output</div>
+<div class="output">
+:22  LISTEN  
+:80  LISTEN  
+:443 LISTEN  
+</div>
+
+<div class="note">✔ Confirms all required services and ports are active.</div>
+
+</div>
+
+</div>
+
+<script>
+function copyText(btn) {
+    const codeBlock = btn.parentElement;
+    const text = codeBlock.innerText.replace("Copy", "").trim();
+    navigator.clipboard.writeText(text);
+    btn.innerText = "Copied!";
+    setTimeout(() => btn.innerText = "Copy", 1200);
+}
+</script>
+
 </body>
 </html>
+

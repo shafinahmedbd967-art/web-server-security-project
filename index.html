@@ -12,41 +12,79 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(-45deg, #1e3c72, #2a5298, #23a6d5, #23d5ab);
+
+    /* Cyberpunk animated background */
+    background: linear-gradient(-45deg, #0a0f2c, #12002f, #001a33, #002b36);
     background-size: 400% 400%;
-    animation: gradientBG 10s ease infinite;
-    color: white;
+    animation: gradientBG 12s ease infinite;
+    color: #e0f7ff;
+    overflow: hidden;
 }
 
+/* animated background */
 @keyframes gradientBG {
     0% {background-position: 0% 50%;}
     50% {background-position: 100% 50%;}
     100% {background-position: 0% 50%;}
 }
 
+/* subtle scanlines effect */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.03),
+        rgba(255,255,255,0.03) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    pointer-events: none;
+}
+
+/* container glass effect */
 .container {
-    background: rgba(0,0,0,0.65);
-    backdrop-filter: blur(10px);
+    position: relative;
+    background: rgba(10, 15, 30, 0.6);
+    backdrop-filter: blur(18px);
     padding: 40px;
-    border-radius: 20px;
+    border-radius: 22px;
     width: 70%;
     max-width: 850px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.6);
+
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    box-shadow:
+        0 0 20px rgba(0, 255, 255, 0.2),
+        0 0 60px rgba(255, 0, 255, 0.08),
+        inset 0 0 15px rgba(0, 255, 255, 0.1);
+
     text-align: center;
 }
 
+/* glowing title */
 h1 {
-    font-size: 40px;
+    font-size: 42px;
     margin-bottom: 10px;
-    color: #00ffd5;
+    color: #00f6ff;
+    text-shadow:
+        0 0 5px #00f6ff,
+        0 0 15px #00f6ff,
+        0 0 30px #00e5ff;
 }
 
+/* subtitle */
 .subtitle {
-    font-size: 16px;
+    font-size: 15px;
     opacity: 0.8;
     margin-bottom: 30px;
+    color: #c7f9ff;
 }
 
+/* grid cards */
 .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -54,29 +92,53 @@ h1 {
 }
 
 .card {
-    background: rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.05);
     padding: 18px;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+
+    border: 1px solid rgba(0, 255, 255, 0.15);
+
+    transition: 0.4s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: inset 0 0 10px rgba(0,255,255,0.05);
+}
+
+/* hover neon glow */
+.card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow:
+        0 0 15px rgba(0, 255, 255, 0.4),
+        0 0 40px rgba(255, 0, 255, 0.15);
+    border: 1px solid rgba(0, 255, 255, 0.5);
 }
 
 .card h3 {
     margin-bottom: 8px;
     font-size: 18px;
+    color: #00ffd5;
+    text-shadow: 0 0 10px rgba(0,255,255,0.4);
 }
 
 .card p {
     margin: 0;
     opacity: 0.85;
+    color: #d0faff;
 }
 
+/* status badge */
 .status {
     margin-top: 25px;
     padding: 10px 20px;
-    background: #00c853;
+
+    background: rgba(0, 255, 120, 0.15);
+    border: 1px solid rgba(0, 255, 120, 0.4);
+    color: #00ff99;
+
     display: inline-block;
     border-radius: 25px;
     font-weight: bold;
+
+    box-shadow: 0 0 15px rgba(0,255,120,0.3);
 }
 
 /* BUTTONS */
@@ -84,6 +146,7 @@ h1 {
     margin-top: 30px;
 }
 
+/* base button */
 .actions a button {
     padding: 12px 20px;
     margin: 6px;
@@ -92,25 +155,74 @@ h1 {
     cursor: pointer;
     font-weight: bold;
     transition: 0.3s;
+
+    position: relative;
+    overflow: hidden;
+
+    letter-spacing: 0.5px;
 }
 
+/* cyber hover effect */
 .actions a button:hover {
-    transform: scale(1.08);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(0,255,255,0.6);
 }
 
-.btn-site { background: #00ffd5; }
-.btn-admin { background: #4caf50; color: white; }
-.btn-status { background: #2196f3; color: white; }
-.btn-https { background: #ff9800; color: white; }
-.btn-log { background: #9c27b0; color: white; }
+/* neon button styles */
+.btn-site {
+    background: linear-gradient(90deg, #00f6ff, #0066ff);
+    color: black;
+}
 
+.btn-admin {
+    background: linear-gradient(90deg, #00ff99, #00ccff);
+    color: black;
+}
+
+.btn-status {
+    background: linear-gradient(90deg, #2196f3, #00e5ff);
+    color: black;
+}
+
+.btn-https {
+    background: linear-gradient(90deg, #ff00cc, #ff9800);
+    color: black;
+}
+
+.btn-log {
+    background: linear-gradient(90deg, #9c27b0, #00f6ff);
+    color: white;
+}
+
+/* footer */
 footer {
     margin-top: 25px;
     font-size: 13px;
     opacity: 0.7;
-    border-top: 1px solid rgba(255,255,255,0.2);
+    border-top: 1px solid rgba(0,255,255,0.2);
     padding-top: 10px;
+    color: #a8f0ff;
 }
+
+/* floating glow animation */
+.container::after {
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: rgba(0,255,255,0.15);
+    filter: blur(80px);
+    top: -50px;
+    left: -50px;
+    animation: floatGlow 6s ease-in-out infinite;
+}
+
+@keyframes floatGlow {
+    0% { transform: translate(0,0); }
+    50% { transform: translate(40px,20px); }
+    100% { transform: translate(0,0); }
+}
+
 </style>
 
 </head>
@@ -148,7 +260,6 @@ footer {
 
     <div class="status">SYSTEM ACTIVE</div>
 
-    <!-- CONTROL PANEL -->
     <div class="actions">
 
         <a href="http://site1.local" target="_blank">
@@ -175,7 +286,6 @@ footer {
             <button class="btn-log">View Logs</button>
         </a>
 
-        <!-- NEW REAL SYSTEM BUTTON -->
         <a href="/realsystem.html">
             <button class="btn-admin">Real System Check</button>
         </a>

@@ -7,53 +7,189 @@
 <style>
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #000000, #1a1a1a);
+    font-family: 'Segoe UI', sans-serif;
+
+    background: linear-gradient(-45deg, #05010f, #0b1a2f, #001018, #12002a);
+    background-size: 400% 400%;
+    animation: bgMove 12s ease infinite;
+
     color: white;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    text-align: center;
+
+    min-height: 100vh;
+    overflow: hidden;
 }
 
+/* animated background */
+@keyframes bgMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* scanline */
+body::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(0,255,255,0.04),
+        rgba(0,255,255,0.04) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    pointer-events: none;
+}
+
+/* glow orb */
+body::after {
+    content: "";
+    position: fixed;
+    width: 320px;
+    height: 320px;
+    background: rgba(0,255,255,0.12);
+    filter: blur(100px);
+    top: 10%;
+    left: 10%;
+    animation: floatGlow 6s ease-in-out infinite;
+}
+
+@keyframes floatGlow {
+    0% { transform: translate(0,0); }
+    50% { transform: translate(50px,30px); }
+    100% { transform: translate(0,0); }
+}
+
+/* container glass */
 .container {
-    background: rgba(255,255,255,0.05);
+    position: relative;
+    background: rgba(10, 15, 30, 0.6);
+    backdrop-filter: blur(18px);
+
     padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(255,255,255,0.1);
+    border-radius: 18px;
     width: 60%;
     max-width: 600px;
+
+    border: 1px solid rgba(0, 255, 255, 0.25);
+
+    box-shadow:
+        0 0 20px rgba(0, 255, 255, 0.25),
+        0 0 60px rgba(255, 0, 255, 0.08),
+        inset 0 0 15px rgba(0, 255, 255, 0.08);
+
+    text-align: center;
+    transition: 0.4s ease;
 }
 
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 0 25px rgba(0,255,255,0.4),
+        0 0 80px rgba(255,0,255,0.15);
+}
+
+/* title */
 h1 {
     font-size: 36px;
-    color: #00ffd5;
+    color: #00f6ff;
     margin-bottom: 10px;
+
+    text-shadow:
+        0 0 5px #00f6ff,
+        0 0 15px #00f6ff,
+        0 0 25px #00e5ff;
 }
 
+/* paragraph */
 p {
     font-size: 16px;
-    opacity: 0.8;
+    opacity: 0.85;
     margin: 8px 0;
+    color: #d0faff;
 }
 
+/* status badge */
 .status {
     margin-top: 20px;
-    padding: 10px;
-    background: #00c853;
+    padding: 10px 15px;
+
+    background: rgba(0, 255, 120, 0.15);
+    border: 1px solid rgba(0, 255, 120, 0.4);
+    color: #00ff99;
+
     display: inline-block;
     border-radius: 20px;
     font-weight: bold;
+
+    box-shadow: 0 0 15px rgba(0,255,120,0.3);
+    transition: 0.3s ease;
 }
 
+.status:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(0,255,120,0.6);
+}
+
+/* info panel */
 .info {
     margin-top: 20px;
     text-align: left;
+
     background: rgba(255,255,255,0.05);
     padding: 15px;
-    border-radius: 10px;
+    border-radius: 12px;
+
+    border: 1px solid rgba(0, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+
+    transition: 0.3s ease;
 }
+
+.info:hover {
+    box-shadow: 0 0 20px rgba(0,255,255,0.3);
+    transform: scale(1.02);
+}
+
+.info p strong {
+    color: #00ffd5;
+    text-shadow: 0 0 8px rgba(0,255,255,0.3);
+}
+
+/* BACK BUTTON AREA */
+.bottom-bar {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+/* BUTTON */
+.back-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 12px;
+
+    font-weight: bold;
+    cursor: pointer;
+
+    background: linear-gradient(90deg, #00f6ff, #0066ff);
+    color: black;
+
+    box-shadow: 0 0 15px rgba(0,255,255,0.4);
+
+    transition: 0.3s ease;
+}
+
+.back-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(0,255,255,0.7);
+}
+
 </style>
 </head>
 
@@ -74,6 +210,13 @@ p {
         <p><strong>Status:</strong> Running Successfully</p>
     </div>
 
+</div>
+
+<!-- BACK TO INDEX BUTTON -->
+<div class="bottom-bar">
+    <a href="http://localhost/index.html">
+        <button class="back-btn">Back to Index (Localhost)</button>
+    </a>
 </div>
 
 </body>
