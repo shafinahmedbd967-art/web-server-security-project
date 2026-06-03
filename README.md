@@ -225,8 +225,8 @@ After completing this project, I gained experience in:
 * Security Hardening Techniques
 * Web Server Troubleshooting
 
-```
 
+---
 
 
 ## 🚀 Features
