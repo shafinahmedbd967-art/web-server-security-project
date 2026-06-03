@@ -6,6 +6,228 @@ This project demonstrates a complete Linux-based Apache Web Server setup with ad
 The system simulates real-world server administration practices used in production environments.
 
 ---
+# 📂 Project Structure
+
+```text
+Linux-Web-Server-Deployment-Security-Hardening/
+│
+├── server-scripts/
+│   ├── install_server.sh
+│   ├── firewall_setup.sh
+│   └── monitor_logs.sh
+│
+├── site1/
+│   └── index.html
+│
+├── site2/
+│   └── index.html
+│
+├── admin.html
+├── index.html
+├── status.html
+├── logs.html
+├── realsystem.html
+└── README.md
+```
+
+---
+
+# 📄 File Overview
+
+## Main Dashboard
+
+### index.html
+
+Acts as the central homepage of the project.
+
+Features:
+
+* Project overview
+* Navigation menu
+* Quick access to server tools
+* System management links
+
+---
+
+## Admin Panel
+
+### admin.html
+
+Administrative control interface.
+
+Features:
+
+* Server management simulation
+* Security overview
+* Administrative navigation
+
+---
+
+## System Status Page
+
+### status.html
+
+Displays server operational information.
+
+Shows:
+
+* Server status
+* Service information
+* Resource monitoring simulation
+
+---
+
+## Log Monitoring Page
+
+### logs.html
+
+Represents server log monitoring functionality.
+
+Displays:
+
+* Access log samples
+* Monitoring information
+* Security event tracking
+
+---
+
+## Real System Information
+
+### realsystem.html
+
+Simulates real-world Linux server deployment information.
+
+Includes:
+
+* Server configuration details
+* Security settings
+* Infrastructure overview
+
+---
+
+## Virtual Host Website 01
+
+### site1/index.html
+
+First hosted website.
+
+Purpose:
+
+* Demonstrates Apache Virtual Hosting
+* Separate domain configuration
+* Independent web content
+
+---
+
+## Virtual Host Website 02
+
+### site2/index.html
+
+Second hosted website.
+
+Purpose:
+
+* Multi-site hosting demonstration
+* Name-based Virtual Host implementation
+
+---
+
+## Server Automation Scripts
+
+### install_server.sh
+
+Automates Apache installation.
+
+Responsibilities:
+
+* System update
+* Apache installation
+* Initial configuration
+
+Example:
+
+```bash
+sudo bash install_server.sh
+```
+
+---
+
+### firewall_setup.sh
+
+Automates UFW firewall configuration.
+
+Responsibilities:
+
+* Allow HTTP traffic
+* Allow HTTPS traffic
+* Block unauthorized connections
+
+Example:
+
+```bash
+sudo bash firewall_setup.sh
+```
+
+---
+
+### monitor_logs.sh
+
+Provides Apache log monitoring.
+
+Responsibilities:
+
+* Access log tracking
+* Error log monitoring
+* Real-time request observation
+
+Example:
+
+```bash
+sudo bash monitor_logs.sh
+```
+
+---
+
+# 🎯 Project Objectives
+
+This project was developed to demonstrate:
+
+✅ Linux System Administration
+
+✅ Apache Web Server Deployment
+
+✅ Virtual Host Configuration
+
+✅ SSL/TLS Security
+
+✅ Firewall Hardening
+
+✅ Server Monitoring
+
+✅ Shell Script Automation
+
+✅ Production Server Concepts
+
+---
+
+# 🧪 Practical Skills Gained
+
+After completing this project, I gained experience in:
+
+* Ubuntu Server Administration
+* Apache Configuration
+* Virtual Host Management
+* HTTPS Deployment
+* OpenSSL Certificate Creation
+* UFW Firewall Rules
+* Bash Scripting
+* Log Analysis
+* Security Hardening Techniques
+* Web Server Troubleshooting
+
+```
+```
+
 
 ## 🚀 Features
 
